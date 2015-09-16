@@ -16,7 +16,7 @@ public class SimpleEnergyControllerTest {
     @Test
     public void returnsPhotovoltaicEnergySource(){
         EnergyClient energyClient = new PublicBuilding();
-        TimeInterval timeInterval = new TimeInterval();
+        TimeInterval timeInterval = new TimeInterval(1, 2);
 
         EnergyController controller = new SimpleEnergyController();
 
