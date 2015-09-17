@@ -1,10 +1,9 @@
 package org.company.panayotov.energy.domain;
 
-import org.junit.Assert;
 import org.junit.Test;
 
 import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertThat;
 
 public class TimeIntervalTest {
 
@@ -14,6 +13,25 @@ public class TimeIntervalTest {
 
         assertThat(timeInterval.startTime(), is(1));
         assertThat(timeInterval.endTime(), is(9));
+    }
 
+    @Test(expected = IllegalArgumentException.class)
+    public void blowsUpIfStartTimeIsLessThanZero(){
+        new TimeInterval(-1, 5);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void blowsUpIfStartTimeIsGreaterThan24(){
+        new TimeInterval(25, 21);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void blowsUpIfStartTimeIsGreaterThanEndTime(){
+        new TimeInterval(10, 9);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void blowsUpIfEndTimeIsGreaterThan24(){
+        new TimeInterval(7,25);
     }
 }
