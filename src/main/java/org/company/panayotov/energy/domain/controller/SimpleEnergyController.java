@@ -2,7 +2,7 @@ package org.company.panayotov.energy.domain.controller;
 
 import org.company.panayotov.energy.domain.TimeInterval;
 import org.company.panayotov.energy.domain.client.EnergyClient;
-import org.company.panayotov.energy.domain.source.BioGasPlantEnergySource;
+import org.company.panayotov.energy.domain.source.BioEnergySource;
 import org.company.panayotov.energy.domain.source.EnergySource;
 import org.company.panayotov.energy.domain.source.PhotovoltaicEnergySource;
 import org.company.panayotov.energy.domain.source.WindEnergySource;
@@ -16,7 +16,7 @@ public class SimpleEnergyController implements EnergyController {
         } else if (timeInterval.endTime() <= 16){
             return new WindEnergySource();
         } else {
-            return new BioGasPlantEnergySource();
+            return new BioEnergySource();
         }
     }
 }
