@@ -11,10 +11,11 @@ public class SimpleEnergyController implements EnergyController {
 
     @Override
     public EnergySource mostEnvironmentallyFriendlyEnergySource(EnergyClient energyClient, TimeInterval timeInterval) {
-        if (timeInterval.endTime() <= 8) {
-            return new PhotovoltaicEnergySource();
-        } else if (timeInterval.endTime() <= 16){
+
+        if (timeInterval.endTime() < 9) {
             return new WindEnergySource();
+        } else if (timeInterval.endTime() < 18) {
+            return new PhotovoltaicEnergySource();
         } else {
             return new BioEnergySource();
         }

@@ -20,25 +20,12 @@ public class SimpleEnergyControllerTest {
     private final EnergyController controller = new SimpleEnergyController();
 
     @Test
-    public void returnsPhotovoltaicEnergySource(){
-        EnergyClient energyClient = new PublicBuilding();
-        TimeInterval timeInterval = mock(TimeInterval.class);
-
-        when(timeInterval.startTime()).thenReturn(1);
-        when(timeInterval.endTime()).thenReturn(7);
-
-        EnergySource energySource = controller.mostEnvironmentallyFriendlyEnergySource(energyClient, timeInterval);
-
-        assertThat(energySource, is(instanceOf(PhotovoltaicEnergySource.class)));
-    }
-
-    @Test
     public void returnsWindEnergySource(){
         EnergyClient energyClient = new PublicBuilding();
         TimeInterval timeInterval = mock(TimeInterval.class);
 
-        when(timeInterval.startTime()).thenReturn(8);
-        when(timeInterval.endTime()).thenReturn(16);
+        when(timeInterval.startTime()).thenReturn(0);
+        when(timeInterval.endTime()).thenReturn(8);
 
         EnergySource energySource = controller.mostEnvironmentallyFriendlyEnergySource(energyClient, timeInterval);
 
@@ -46,11 +33,24 @@ public class SimpleEnergyControllerTest {
     }
 
     @Test
+    public void returnsPhotovoltaicEnergySource(){
+        EnergyClient energyClient = new PublicBuilding();
+        TimeInterval timeInterval = mock(TimeInterval.class);
+
+        when(timeInterval.startTime()).thenReturn(9);
+        when(timeInterval.endTime()).thenReturn(17);
+
+        EnergySource energySource = controller.mostEnvironmentallyFriendlyEnergySource(energyClient, timeInterval);
+
+        assertThat(energySource, is(instanceOf(PhotovoltaicEnergySource.class)));
+    }
+
+    @Test
     public void returnsBioGasPlantEnergySource(){
         EnergyClient energyClient = new PublicBuilding();
         TimeInterval timeInterval = mock(TimeInterval.class);
 
-        when(timeInterval.startTime()).thenReturn(17);
+        when(timeInterval.startTime()).thenReturn(18);
         when(timeInterval.endTime()).thenReturn(24);
 
         EnergySource energySource = controller.mostEnvironmentallyFriendlyEnergySource(energyClient, timeInterval);
