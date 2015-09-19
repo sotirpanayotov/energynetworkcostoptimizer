@@ -18,10 +18,10 @@ import static org.mockito.Mockito.when;
 public class SimpleEnergyControllerTest {
 
     private final EnergyController controller = new SimpleEnergyController();
+    private final EnergyClient energyClient = new PublicBuilding();
 
     @Test
     public void returnsWindEnergySource(){
-        EnergyClient energyClient = new PublicBuilding();
         TimeInterval timeInterval = mock(TimeInterval.class);
 
         when(timeInterval.startTime()).thenReturn(0);
@@ -34,7 +34,6 @@ public class SimpleEnergyControllerTest {
 
     @Test
     public void returnsPhotovoltaicEnergySource(){
-        EnergyClient energyClient = new PublicBuilding();
         TimeInterval timeInterval = mock(TimeInterval.class);
 
         when(timeInterval.startTime()).thenReturn(9);
@@ -47,7 +46,6 @@ public class SimpleEnergyControllerTest {
 
     @Test
     public void returnsBioGasPlantEnergySource(){
-        EnergyClient energyClient = new PublicBuilding();
         TimeInterval timeInterval = mock(TimeInterval.class);
 
         when(timeInterval.startTime()).thenReturn(18);
