@@ -4,7 +4,6 @@ import org.company.panayotov.energy.domain.TimeInterval;
 import org.company.panayotov.energy.domain.client.EnergyClient;
 import org.company.panayotov.energy.domain.client.PublicBuilding;
 import org.company.panayotov.energy.domain.source.BioEnergySource;
-import org.company.panayotov.energy.domain.source.EnergySource;
 import org.company.panayotov.energy.domain.source.PhotovoltaicEnergySource;
 import org.company.panayotov.energy.domain.source.WindEnergySource;
 import org.junit.Test;
@@ -27,9 +26,9 @@ public class SimpleEnergyControllerTest {
         when(timeInterval.startTime()).thenReturn(0);
         when(timeInterval.endTime()).thenReturn(8);
 
-        EnergySource energySource = controller.mostEnvironmentallyFriendlyEnergySource(energyClient, timeInterval);
+        Result result = controller.mostEnvironmentallyFriendlyEnergySource(energyClient, timeInterval);
 
-        assertThat(energySource, is(instanceOf(WindEnergySource.class)));
+        assertThat(result.energySource(), is(instanceOf(WindEnergySource.class)));
     }
 
     @Test
@@ -39,9 +38,9 @@ public class SimpleEnergyControllerTest {
         when(timeInterval.startTime()).thenReturn(9);
         when(timeInterval.endTime()).thenReturn(17);
 
-        EnergySource energySource = controller.mostEnvironmentallyFriendlyEnergySource(energyClient, timeInterval);
+        Result result = controller.mostEnvironmentallyFriendlyEnergySource(energyClient, timeInterval);
 
-        assertThat(energySource, is(instanceOf(PhotovoltaicEnergySource.class)));
+        assertThat(result.energySource(), is(instanceOf(PhotovoltaicEnergySource.class)));
     }
 
     @Test
@@ -51,8 +50,8 @@ public class SimpleEnergyControllerTest {
         when(timeInterval.startTime()).thenReturn(18);
         when(timeInterval.endTime()).thenReturn(24);
 
-        EnergySource energySource = controller.mostEnvironmentallyFriendlyEnergySource(energyClient, timeInterval);
+        Result result = controller.mostEnvironmentallyFriendlyEnergySource(energyClient, timeInterval);
 
-        assertThat(energySource, is(instanceOf(BioEnergySource.class)));
+        assertThat(result.energySource(), is(instanceOf(BioEnergySource.class)));
     }
 }

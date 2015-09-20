@@ -3,8 +3,8 @@ package org.company.panayotov.energy;
 import org.company.panayotov.energy.domain.TimeInterval;
 import org.company.panayotov.energy.domain.client.PublicBuilding;
 import org.company.panayotov.energy.domain.controller.EnergyController;
+import org.company.panayotov.energy.domain.controller.Result;
 import org.company.panayotov.energy.domain.controller.SimpleEnergyController;
-import org.company.panayotov.energy.domain.source.EnergySource;
 
 import java.util.Scanner;
 
@@ -20,9 +20,9 @@ public class Main {
 
             TimeInterval timeInterval = new TimeInterval(startTime, endTime);
             EnergyController controller = new SimpleEnergyController();
-            EnergySource source = controller.mostEnvironmentallyFriendlyEnergySource(new PublicBuilding(), timeInterval);
+            Result result = controller.mostEnvironmentallyFriendlyEnergySource(new PublicBuilding(), timeInterval);
 
-            System.out.println("Your Energy will come from " + source.name());
+            System.out.println("Your Energy will come from " + result.energySource().name());
 
         } catch (Exception e) {
             System.out.println("Exception: " + e);
